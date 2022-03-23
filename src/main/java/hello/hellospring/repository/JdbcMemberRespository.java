@@ -1,15 +1,17 @@
 //package hello.hellospring.repository;
 //
 //import hello.hellospring.domain.Member;
+//import org.springframework.jdbc.datasource.DataSourceUtils;
 //
 //import javax.sql.DataSource;
+//import java.sql.*;
+//import java.util.ArrayList;
 //import java.util.List;
 //import java.util.Optional;
 //
-//public class JdbcMemberRepository implements MemberRepository {
+//public class JdbcMemberRespository implements MemberRepository{
 //
 //    private final DataSource dataSource;
-//
 //    public JdbcMemberRepository(DataSource dataSource) {
 //        this.dataSource = dataSource;
 //    }
@@ -39,12 +41,12 @@
 //            close(conn, pstmt, rs);
 //        }
 //    }
+//
 //    @Override
 //    public Optional<Member> findById(Long id) {
 //        String sql = "select * from member where id = ?";
 //        Connection conn = null;
 //        PreparedStatement pstmt = null;
-//
 //        ResultSet rs = null;
 //        try {
 //            conn = getConnection();
@@ -64,6 +66,7 @@
 //        } finally {
 //            close(conn, pstmt, rs);
 //        } }
+//
 //    @Override
 //    public List<Member> findAll() {
 //        String sql = "select * from member";
@@ -74,7 +77,6 @@
 //            conn = getConnection();
 //            pstmt = conn.prepareStatement(sql);
 //            rs = pstmt.executeQuery();
-//
 //            List<Member> members = new ArrayList<>();
 //            while(rs.next()) {
 //                Member member = new Member();
@@ -89,6 +91,7 @@
 //            close(conn, pstmt, rs);
 //        }
 //    }
+//
 //    @Override
 //    public Optional<Member> findByName(String name) {
 //        String sql = "select * from member where name = ?";
@@ -106,7 +109,6 @@
 //                member.setName(rs.getString("name"));
 //                return Optional.of(member);
 //            }
-//
 //            return Optional.empty();
 //        } catch (Exception e) {
 //            throw new IllegalStateException(e);
@@ -114,6 +116,8 @@
 //            close(conn, pstmt, rs);
 //        }
 //    }
+//
+//
 //    private Connection getConnection() {
 //        return DataSourceUtils.getConnection(dataSource);
 //    }
@@ -139,7 +143,10 @@
 //        } catch (SQLException e) {
 //            e.printStackTrace();
 //        } }
+//
 //    private void close(Connection conn) throws SQLException {
 //        DataSourceUtils.releaseConnection(conn, dataSource);
 //
 //    } }
+//}
+//
